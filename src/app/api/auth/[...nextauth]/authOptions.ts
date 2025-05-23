@@ -3,6 +3,7 @@ import prisma from '@/lib/prisma';
 import { compare } from 'bcryptjs';
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     CredentialsProvider({
       name: 'Credentials',
