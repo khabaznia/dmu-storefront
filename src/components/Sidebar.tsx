@@ -2,20 +2,31 @@
 
 import Link from 'next/link'
 import LogoutButton from './LogoutButton'
+import { usePathname } from 'next/navigation'
 
 export default function Sidebar() {
+  const pathname = usePathname();
   return (
-    <aside className="flex flex-col justify-between h-screen w-64 bg-white border-r">
+    <aside className="flex flex-col justify-between h-screen w-64 min-w-64 max-w-64 bg-white border-r">
       <div>
         <div className="px-6 py-6 font-bold text-xl text-blue-600">Документи</div>
         <nav className="flex flex-col gap-2 px-2">
-          <Link href="/dashboard" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 text-blue-600 font-medium">
+          <Link
+            href="/dashboard"
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 ${pathname === '/dashboard' ? 'text-blue-600 font-bold bg-blue-50' : 'text-gray-700'}`}
+          >
             Генерація документів
           </Link>
-          <Link href="/officials" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 text-gray-700">
+          <Link
+            href="/officials"
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 ${pathname === '/officials' ? 'text-blue-600 font-bold bg-blue-50' : 'text-gray-700'}`}
+          >
             Посадові особи
           </Link>
-          <Link href="/templates" className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 text-gray-700">
+          <Link
+            href="/templates"
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 ${pathname === '/templates' ? 'text-blue-600 font-bold bg-blue-50' : 'text-gray-700'}`}
+          >
             Шаблони
           </Link>
         </nav>
