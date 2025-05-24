@@ -7,13 +7,13 @@ applications:
             - npm ci
             - echo "DATABASE_URL=$DATABASE_URL" > .env
             - echo "NEXTAUTH_SECRET=$NEXTAUTH_SECRET" >> .env
-            - echo "NEXTAUTH_URL=NEXTAUTH_URL" >> .env
+            - echo "NEXTAUTH_URL=$NEXTAUTH_URL" >> .env
             - npx prisma generate
         build:
           commands:
             - echo "DATABASE_URL=$DATABASE_URL" > .env
             - echo "NEXTAUTH_SECRET=$NEXTAUTH_SECRET" >> .env
-            - echo "NEXTAUTH_URL=NEXTAUTH_URL" >> .env
+            - echo "NEXTAUTH_URL=$NEXTAUTH_URL" >> .env
             - npx prisma migrate deploy
             - npm run build
       artifacts:
@@ -24,4 +24,4 @@ applications:
         paths:
           - node_modules/**/*
           - .next/cache/**/*
-    appRoot: . 
+    appRoot: .
