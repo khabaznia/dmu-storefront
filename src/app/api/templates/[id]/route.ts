@@ -3,7 +3,8 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_req: NextRequest, context: any) {
+  const { params } = context;
   try {
     const id = Number(params.id);
     const template = await prisma.template.findUnique({ where: { id } });
@@ -16,7 +17,8 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
   }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: any) {
+  const { params } = context;
   try {
     const id = Number(params.id);
     const formData = await req.formData();
@@ -35,7 +37,8 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(_req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(_req: NextRequest, context: any) {
+  const { params } = context;
   try {
     const id = Number(params.id);
     await prisma.template.delete({ where: { id } });

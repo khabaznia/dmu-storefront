@@ -3,9 +3,10 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function GET(_req: NextRequest, context: { params: { id: string } }) {
+export async function GET(_req: NextRequest, context: any) {
+  const { params } = context;
   try {
-    const id = Number(context.params.id);
+    const id = Number(params.id);
     const template = await prisma.template.findUnique({ where: { id } });
     if (!template || !template.docxTemplate) {
       return NextResponse.json({ error: 'Файл не знайдено' }, { status: 404 });

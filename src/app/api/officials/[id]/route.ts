@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: any) {
+  const { params } = context;
   try {
     const official = await prisma.official.findUnique({ where: { id: Number(params.id) } });
     if (!official) return NextResponse.json({ error: 'Not found' }, { status: 404 });
@@ -11,7 +12,8 @@ export async function GET(req: NextRequest, { params }: { params: { id: string }
   }
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: any) {
+  const { params } = context;
   try {
     const data = await req.json();
     const official = await prisma.official.update({ where: { id: Number(params.id) }, data });
@@ -21,7 +23,8 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   }
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: any) {
+  const { params } = context;
   try {
     await prisma.official.delete({ where: { id: Number(params.id) } });
     return NextResponse.json({ success: true });
