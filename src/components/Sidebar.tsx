@@ -33,6 +33,18 @@ export default function Sidebar() {
           >
             Шаблони
           </Link>
+          <Link
+            href="/witnesses"
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 ${pathname === '/witnesses' ? 'text-blue-600 font-bold bg-blue-50' : 'text-gray-700'}`}
+          >
+            Свідки
+          </Link>
+          <Link
+            href="/vc"
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-blue-50 ${pathname === '/vc' ? 'text-blue-600 font-bold bg-blue-50' : 'text-gray-700'}`}
+          >
+            В/C
+          </Link>
         </nav>
       </div>
       <div className="px-6 py-4 flex flex-col gap-3 border-t">

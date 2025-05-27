@@ -39,3 +39,15 @@ model Template {
   properties   String[]
   docxTemplate Bytes
 }
+
+model Witness {
+  id         Int      @id @default(autoincrement())
+  fullName   String
+  position   String
+  rank       String
+  dateFrom   DateTime
+  dateTo     DateTime?
+  birthDate  DateTime
+  phone      String
+  document   String
+}
